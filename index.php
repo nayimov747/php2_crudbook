@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Book list</title>
+</head>
+
+<body>
+  <div class="container">
+    <header class="d-flex justify-content-between my-4">
+      <h1>Add New Book</h1>
+      <div>
+        <a href="create.php" class="btn btn-primary">Add new book</a>
+      </div>
+    </header>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        include("connect.php");
+        $sql = "SELECT * FROM books";
+        $result = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+          <tr>
+            <td><?php echo $row["id"] ?></td>
+            <td><?php echo $row["title"] ?></td>
+            <td><?php echo $row["author"] ?></td>
+            <td><?php echo $row["type"] ?></td>
+            <td>
+              <a href="view.php?id=<?php echo $row["id"] ?>" class="btn btn-primary">Read more</a>
+              <a href="" class="btn btn-warning">Edit</a>
+              <a href="" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+
+        <?php
+        }
+
+        print_r($row);
+
+        ?>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
