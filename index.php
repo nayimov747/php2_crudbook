@@ -17,6 +17,45 @@
       </div>
     </header>
 
+    <?php 
+    session_start();
+    if(isset($_SESSION['create'])) {
+      ?>
+      <div class="alert alert-success">
+        <?php echo $_SESSION['create'];
+         unset($_SESSION['create']);
+        ?>
+
+      </div>
+      <?php
+    }
+    ?>
+    <?php 
+    
+    if(isset($_SESSION['edit'])) {
+      ?>
+      <div class="alert alert-success">
+        <?php echo $_SESSION['edit'];
+         unset($_SESSION['edit']);
+        ?>
+
+      </div>
+      <?php
+    }
+    ?>
+    <?php 
+    if(isset($_SESSION['delete'])) {
+      ?>
+      <div class="alert alert-success">
+        <?php echo $_SESSION['delete'];
+         unset($_SESSION['delete']);
+        ?>
+
+      </div>
+      <?php
+    }
+    ?>
+
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -42,8 +81,8 @@
             <td><?php echo $row["type"] ?></td>
             <td>
               <a href="view.php?id=<?php echo $row["id"] ?>" class="btn btn-primary">Read more</a>
-              <a href="" class="btn btn-warning">Edit</a>
-              <a href="" class="btn btn-danger">Delete</a>
+              <a href="edit.php?id=<?php echo $row["id"] ?>" class="btn btn-warning">Edit</a>
+              <a href="delete.php?id=<?php echo $row["id"] ?>" class="btn btn-danger">Delete</a>
             </td>
           </tr>
 
